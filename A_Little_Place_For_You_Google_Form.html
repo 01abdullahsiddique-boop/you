@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Place For You 💙</title>
+
+<style>
+:root {
+    --bg: #10172f;
+    --card: #1b2445;
+    --pink: #ffb9d4;
+    --lavender: #c9baff;
+    --blue: #9edcff;
+    --white: #fff8ff;
+    --muted: #c4cce5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: var(--white);
+    background:
+        radial-gradient(ellipse at top left, #33315c 0%, transparent 45%),
+        radial-gradient(ellipse at bottom right, #263e64 0%, transparent 40%),
+        var(--bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+button, textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#sky {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    color: white;
+    opacity: .65;
+    animation: twinkle 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.8); }
+    to { opacity: .9; transform: scale(1.25); }
+}
+
+.floating {
+    position: fixed;
+    bottom: -40px;
+    z-index: 10;
+    pointer-events: none;
+    animation: floatUp 5s ease-in forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    width: min(92%, 690px);
+    margin: auto;
+    padding: 28px 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.topline {
+    text-align: center;
+    color: var(--blue);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 12px 0 22px;
+}
+
+.card {
+    background: linear-gradient(145deg, #202b50ed, #191f3fee);
+    border: 1px solid #ffffff1b;
+    border-radius: 27px;
+    padding: 32px 25px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 18px 55px #00000020;
+    backdrop-filter: blur(12px);
+}
+
+.hero {
+    padding: 46px 25px 38px;
+    border-color: #d9c5ff38;
+    background:
+        radial-gradient(ellipse at top, #654c8d60, transparent 65%),
+        linear-gradient(145deg, #252b50, #171d38);
+}
+
+.eyebrow {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 30px;
+    color: var(--pink);
+    background: #ffb9d414;
+    border: 1px solid #ffb9d42a;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 23px;
+}
+
+.hero-emoji {
+    font-size: 68px;
+    margin-bottom: 18px;
+    animation: bob 3s ease-in-out infinite;
+}
+
+@keyframes bob {
+    50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+h1 {
+    font-size: clamp(34px, 8vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 17px;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--pink), var(--lavender), var(--blue));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+h2 {
+    font-size: 25px;
+    margin-bottom: 15px;
+    color: var(--pink);
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--muted);
+    margin: 10px 0;
+}
+
+.small-note {
+    font-size: 12px;
+    color: #9eacce;
+    margin-top: 20px;
+}
+
+.section-icon {
+    font-size: 43px;
+    margin-bottom: 16px;
+}
+
+button {
+    border: 1px solid #ffffff20;
+    border-radius: 30px;
+    padding: 13px 19px;
+    margin: 9px 3px 0;
+    color: white;
+    background: #ffffff0c;
+    transition: transform .2s, background .2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    background: #ffffff19;
+}
+
+.primary {
+    background: linear-gradient(100deg, #e995bd, #ad9bf6);
+    color: #201a3a;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 7px 25px #bd9bed24;
+}
+
+.primary:hover {
+    background: linear-gradient(100deg, #ffc5dc, #c6b7ff);
+}
+
+.blue-btn {
+    background: #9edcff1b;
+    color: var(--blue);
+    border-color: #9edcff40;
+}
+
+.pink-btn {
+    background: #ffb9d415;
+    color: var(--pink);
+    border-color: #ffb9d43d;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.reveal {
+    animation: reveal .45s ease both;
+}
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-box {
+    margin-top: 20px;
+    padding: 22px 18px;
+    border-radius: 20px;
+    border: 1px solid #c9baff30;
+    background: linear-gradient(135deg, #c9baff12, #ffb9d410);
+    color: var(--white);
+    line-height: 1.9;
+    white-space: pre-line;
+    text-align: left;
+}
+
+.reasons-list {
+    display: grid;
+    gap: 11px;
+    margin-top: 23px;
+}
+
+.reason {
+    padding: 14px;
+    text-align: left;
+    background: #ffffff08;
+    border: 1px solid #ffffff10;
+    border-radius: 15px;
+    color: #e5e7f7;
+    line-height: 1.7;
+}
+
+.reason span {
+    margin-right: 8px;
+}
+
+.letter {
+    text-align: left;
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    min-height: 160px;
+    margin: 18px 0 10px;
+    padding: 17px;
+    border-radius: 18px;
+    resize: vertical;
+    color: white;
+    background: #10172f;
+    border: 1px solid #c9baff55;
+    outline: none;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+textarea:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 3px #ffb9d414;
+}
+
+textarea::placeholder {
+    color: #909bbd;
+}
+
+.full {
+    width: 100%;
+}
+
+.hug-heart {
+    font-size: 70px;
+    display: inline-block;
+    animation: pulse 1.1s infinite;
+}
+
+@keyframes pulse {
+    50% { transform: scale(1.15); }
+}
+
+footer {
+    text-align: center;
+    padding: 28px 10px 35px;
+    color: #aab7d9;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.footer-heart {
+    color: var(--pink);
+    font-size: 19px;
+}
+
+@media(max-width: 480px) {
+    .container { width: 92%; padding-top: 17px; }
+    .card { padding: 27px 18px; border-radius: 23px; }
+    .hero { padding: 36px 18px; }
+    h2 { font-size: 22px; }
+    p { font-size: 14px; }
+    button { padding: 12px 16px; font-size: 13px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="sky"></div>
+
+<div class="container">
+
+    <div class="topline">A LITTLE WEBSITE · A LOT OF LOVE</div>
+
+    <!-- WELCOME -->
+    <section class="card hero">
+        <div class="eyebrow">✦ MADE ESPECIALLY FOR YOU ✦</div>
+
+        <div class="hero-emoji">🌙💗</div>
+
+        <h1>
+            Hey, <span class="gradient-text">Bestie!</span>
+        </h1>
+
+        <p>
+            Oye Aroob madam! 🥹<br>
+            I don't know what's going on in that pretty little head
+            of yours today...
+        </p>
+
+        <p>
+            But I made this tiny corner of the internet
+            just for you. A place where you can smile,
+            laugh, or simply be yourself. 🫶
+        </p>
+
+        <button class="primary full" onclick="openSurprise()">
+            Open Your Little Surprise ✨
+        </button>
+
+        <div id="surprise" class="message-box hidden">
+            <h2>Surprise, Pagal! 🎀</h2>
+            Congratulations! 🏆
+
+            You've won a lifetime membership to my
+            unnecessary jokes, random talks and
+            unlimited bestie drama. 😂💗
+
+            No cancellation. No refunds.
+            You're stuck with me!
+        </div>
+
+        <p class="small-note">Take a breath. You're safe to feel whatever you feel. ☁️</p>
+    </section>
+
+    <!-- REMINDER -->
+    <section class="card">
+        <div class="section-icon">🦋</div>
+        <h2>A Little Reminder</h2>
+
+        <p>
+            You don't have to be okay all the time.<br>
+            You don't have to smile just to make everyone else comfortable.<br>
+            And you don't have to explain your sadness before
+            you deserve kindness.
+        </p>
+
+        <p>
+            Aaj ka din mushkil hai toh hone do.
+            Har din perfect hona zaroori nahi.
+            One bad day doesn't make your whole life bad. 💙
+        </p>
+
+        <button class="pink-btn" onclick="sendHug()">
+            Sending You a Giant Hug 🫂
+        </button>
+
+        <div id="hug" class="message-box hidden" style="text-align:center">
+            <div class="hug-heart">🫂</div>
+            <h2>HUG DELIVERED! 💌</h2>
+            Imagine the biggest, warmest hug ever.
+            No questions, no pressure. Just a little reminder
+            that you matter. 💗
+        </div>
+    </section>
+
+    <!-- WHY YOU MATTER -->
+    <section class="card">
+        <div class="section-icon">🌷</div>
+        <h2>Things You Need to Remember</h2>
+
+        <p>Especially on the days you forget them. 💗</p>
+
+        <div class="reasons-list">
+            <div class="reason">
+                <span>🌸</span> Your feelings are valid, even when you can't explain them.
+            </div>
+            <div class="reason">
+                <span>🦋</span> You deserve kindness, especially from yourself.
+            </div>
+            <div class="reason">
+                <span>💙</span> You don't have to earn your place in someone's life by being happy all the time.
+            </div>
+            <div class="reason">
+                <span>✨</span> You've made more beautiful memories than you realise.
+            </div>
+            <div class="reason">
+                <span>🫶</span> You are loved for who you are, not just for what you do for others.
+            </div>
+        </div>
+    </section>
+
+    <!-- FUNNY SECTION -->
+    <section class="card">
+        <div class="section-icon">😭😂</div>
+        <h2>Emergency Bakwaas Department</h2>
+
+        <p>
+            Doctor ki prescription: thori si hasi,
+            thori si gossip aur unlimited pagalpan. 😂
+        </p>
+
+        <button class="primary" onclick="newJoke()">
+            Give Me Some Bakwaas 🤣
+        </button>
+
+        <div id="joke" class="message-box hidden"></div>
+    </section>
+
+    <!-- PERSONAL LETTER -->
+    <section class="card">
+        <div class="section-icon">💌</div>
+        <h2>A Letter For My Bestie</h2>
+
+        <p>Read this whenever the world feels a little too much.</p>
+
+        <button class="blue-btn" onclick="readLetter()">
+            Open Your Letter 🥹
+        </button>
+
+        <div id="letter" class="message-box letter hidden">My dearest bestie, 💙
+
+I know that sometimes life gets overwhelming.
+Sometimes you feel things you can't even put into words.
+
+And I want you to know that you don't need to hide those feelings from me.
+
+You don't always have to be the funny one.
+You don't always have to pretend you're strong.
+And you don't need to fix your mood just because someone wants you to smile.
+
+Agar dil udaas hai, toh mujhe bata dena.
+Agar rona hai, toh ro lena.
+Agar khamosh rehna hai, toh woh bhi okay hai.
+
+Main tumhari feelings ko judge karne nahi,
+tumhari baat sunne ke liye hoon. 🫂
+
+Our random conversations, our silly jokes,
+our little memories and our endless pagalpan...
+I genuinely treasure them.
+
+But remember something:
+You matter even on the days when you don't feel like yourself.
+
+So take your time, breathe a little,
+and be gentle with yourself.
+
+Tumhein aaj hi sab kuch theek karne ki zaroorat nahi.
+One little step at a time, okay?
+
+Sending you all the love in this tiny corner of the universe. 🌙💗
+
+Always cheering for you,
+Your bestie. 🫶</div>
+    </section>
+
+    <!-- LISTENING SECTION -->
+    <section class="card" id="talk">
+        <div class="section-icon">🌙</div>
+        <h2>Tell Me What's On Your Mind</h2>
+
+        <p>
+            Ab bestie, tumhari baari. 💌<br>
+            You can tell me anything. The big things,
+            the little things, or even things you don't
+            know how to explain yet.
+        </p>
+
+        <p>
+            No judgement. No pressure.
+            Just a little space for your feelings. 🫂
+        </p>
+
+        <button class="primary full" onclick="showMessageBox()">
+            I'm Here, Bestie. Let's Talk 💗
+        </button>
+
+        <div id="writeArea" class="hidden">
+            <textarea
+                id="bestieMessage"
+                maxlength="5000"
+                placeholder="Jo dil mein hai, bata do... I'm listening, bestie. 🥹💙"
+                aria-label="Write your feelings here"
+            ></textarea>
+
+            <p style="text-align:left;font-size:12px">
+                Take your time. You don't need perfect words. 💙
+            </p>
+
+            <button class="primary full" onclick="sendMessage()">
+                Finish My Message 💌
+            </button>
+
+            <div id="sentMessage" class="message-box hidden"
+                 aria-live="polite"></div>
+        </div>
+    </section>
+
+    <!-- END -->
+    <section class="card">
+        <div class="section-icon">🌌</div>
+
+        <h2>One Last Thing...</h2>
+
+        <p>
+            Even if this little website makes you smile
+            for just one second, I'm glad I made it. 💗
+        </p>
+
+        <p>
+            You don't need to feel better instantly.
+            Just remember to be kind to yourself, okay?
+        </p>
+
+        <button class="pink-btn" onclick="makeMagic()">
+            A Little More Magic ✨
+        </button>
+    </section>
+
+    <footer>
+        <div class="footer-heart">♡</div>
+        Made with love, just for you.<br>
+        Your favourite pagal bestie. 💙<br>
+        <span style="color:#7e8db5">You matter more than you know.</span>
+    </footer>
+
+</div>
+
+<script>
+// Twinkling stars
+const sky = document.getElementById("sky");
+
+for (let i = 0; i < 65; i++) {
+    const star = document.createElement("span");
+    star.className = "star";
+    star.textContent = Math.random() > 0.5 ? "✦" : "·";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.fontSize = (8 + Math.random() * 12) + "px";
+    star.style.animationDelay = Math.random() * 3 + "s";
+    sky.appendChild(star);
+}
+
+// Floating hearts
+function burst() {
+    const emojis = ["💗", "💙", "✨", "🦋", "🌸", "♡"];
+
+    for (let i = 0; i < 24; i++) {
+        const item = document.createElement("span");
+        item.className = "floating";
+        item.textContent =
+            emojis[Math.floor(Math.random() * emojis.length)];
+
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.fontSize = (16 + Math.random() * 18) + "px";
+        item.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+        document.body.appendChild(item);
+
+        setTimeout(() => item.remove(), 6500);
+    }
+}
+
+function reveal(id) {
+    const element = document.getElementById(id);
+    element.classList.remove("hidden");
+    element.classList.add("reveal");
+}
+
+function openSurprise() {
+    reveal("surprise");
+    burst();
+}
+
+function sendHug() {
+    reveal("hug");
+    burst();
+}
+
+const jokes = [
+    "Aroob ka mood: Loading... ⏳ Gol Gappay ka naam: SYSTEM RESTARTED 😂",
+    "Breaking news: Bestie ko smile karwane ke liye uski favourite bakwaas service activate kar di gayi hai. 😭💗",
+    "Overthinking band karo... warna tumhara dimaagh tumse overtime ke paise maang lega. 😂",
+    "Agar pagalpan ek subject hota, toh hum dono class ke toppers hote. 🏆😭",
+    "Life: Be serious. Besties: Hahahahahaha, sun ek baat bataun? 😂",
+    "Aaj ka task: Paani piyo, saans lo, aur apne aap par thora sa reham karo. 🫶"
+];
+
+let jokeIndex = 0;
+
+function newJoke() {
+    const box = document.getElementById("joke");
+    box.textContent = jokes[jokeIndex % jokes.length];
+    jokeIndex++;
+
+    reveal("joke");
+}
+
+function readLetter() {
+    reveal("letter");
+    burst();
+    document.getElementById("letter").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+function showMessageBox() {
+    reveal("writeArea");
+
+    document.getElementById("writeArea").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    setTimeout(() => {
+        document.getElementById("bestieMessage").focus();
+    }, 450);
+}
+
+function sendMessage() {
+    const message = document
+        .getElementById("bestieMessage")
+        .value.trim();
+
+    const result = document.getElementById("sentMessage");
+
+    if (!message) {
+        result.textContent =
+            "Bestie, agar tum likhna chahti ho toh yahan se shuru karo. 💗";
+        result.classList.remove("hidden");
+        result.classList.add("reveal");
+        return;
+    }
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action =
+        "https://docs.google.com/forms/d/e/1FAIpQLScXCqKNetFyrGB4vG3h5x9teAK-yVxpxcFtuZ9ZAzVe2dun2Q/formResponse";
+    form.target = "googleFormResponse";
+    form.style.display = "none";
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "entry.1201183106";
+    input.value = message;
+
+    form.appendChild(input);
+
+    let iframe = document.getElementById("googleFormResponse");
+
+    if (!iframe) {
+        iframe = document.createElement("iframe");
+        iframe.name = "googleFormResponse";
+        iframe.id = "googleFormResponse";
+        iframe.style.display = "none";
+        document.body.appendChild(iframe);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+
+    result.textContent =
+        "Your message is being submitted, bestie! 💌\\n\\n" +
+        "Thank you for sharing your feelings. 💙 " +
+        "I hope this little space made you feel heard. 🫂";
+
+    result.classList.remove("hidden");
+    result.classList.add("reveal");
+
+    document.getElementById("bestieMessage").value = "";
+
+    setTimeout(() => form.remove(), 3000);
+
+    burst();
+}
+
+function makeMagic() {
+    burst();
+
+    const button = document.querySelector(
+        "#talk"
+    );
+
+    button.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+</script>
+
+</body>
+</html>
